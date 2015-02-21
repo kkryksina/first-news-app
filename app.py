@@ -1,4 +1,5 @@
 import csv
+from flask import abort
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
@@ -21,6 +22,7 @@ def detail(row_id):
     for row in object_list:
         if row['id'] == row_id:
             return render_template(template, object=row)
+    abort(404)
 
 app.route('/<row_id>/')(detail)
 
